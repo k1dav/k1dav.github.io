@@ -1,4 +1,4 @@
-image: awesometic/docusaurus
+image: gitpod/workspace-base:latest
 
 ports:
   - name: page
