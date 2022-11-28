@@ -1,9 +1,7 @@
-image: gitpod/workspace-base:latest
+image: node:lts-alpine
 
 ports:
   - name: page
     port: 80
     onOpen: ignore
     visibility: public
-
-
