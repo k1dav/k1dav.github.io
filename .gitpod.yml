@@ -1,4 +1,4 @@
-image: node:lts-alpine
+image: gitpod/workspace-node-lts
 
 ports:
   - name: page
