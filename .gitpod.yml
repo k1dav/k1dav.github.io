@@ -1,0 +1,9 @@
+image: awesometic/docusaurus
+
+ports:
+  - name: page
+    port: 80
+    onOpen: ignore
+    visibility: public
+
+
