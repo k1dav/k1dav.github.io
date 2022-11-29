@@ -1,0 +1,50 @@
+---
+sidebar_position: 4
+title: Live Codeblock
+---
+
+安裝 Live Code blocks Extension  
+建立互動式的 CodeBlocks
+
+## 1. 安裝
+在 docusaurus 的目錄下 (含有 package.json 的那一層目錄)
+```bash
+npm install --save @docusaurus/theme-live-codeblock
+```
+
+## 2. 設定 docusaurus.config.js
+```ts
+const config = {
+  // ...
+  themes: ['@docusaurus/theme-live-codeblock'],
+  // ...
+}
+```
+
+## Sample Live Code blocks
+```jsx live
+function Clock(props) {
+  const [date, setDate] = useState(new Date());
+  useEffect(() => {
+    const timerID = setInterval(() => tick(), 1000);
+
+    return function cleanup() {
+      clearInterval(timerID);
+    };
+  });
+
+  function tick() {
+    setDate(new Date());
+  }
+
+  return (
+    <div>
+      <h2>It is {date.toLocaleTimeString()}.</h2>
+    </div>
+  );
+}
+```
+
+
+## 參考資料
+- [Docusaurus - Interactive code editor](https://docusaurus.io/docs/markdown-features/code-blocks#interactive-code-editor)

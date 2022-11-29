@@ -1,13 +1,10 @@
-
 image: gitpod/workspace-node-lts
 
 ports:
   - name: page
     port: 3000
     onOpen: ignore
-    visibility: public
 
 vscode:
   extensions:
-    - unifiedjs.vscode-mdx
     - yzhang.markdown-all-in-one

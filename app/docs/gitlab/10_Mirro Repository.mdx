@@ -1,0 +1,108 @@
+---
+sidebar_position: 10
+title: Mirror Repository
+---
+
+## 什麼是 Mirror Repository?
+將程式碼備份到別的 Repo 上  
+例如：將程式碼也備份到 Github 上
+
+## 讓我們來將程式碼 Mirror 到 Github 上吧！
+### 1. 先準備好要 Mirror 的 Github Repo
+
+<img
+  src={require('./github_repo.png').default}
+  alt="Existed Github Repo"
+  style={{'max-width': '700px', 'margin-left': '24px'}} 
+/>
+
+### 2. 以及一個做為來源的 Gitlab Repo
+<img
+  src={require('./gitlab_repo.png').default}
+  alt="Existed Gitlab Repo"
+  style={{'max-width': '700px', 'margin-left': '24px'}} 
+/>
+
+### 3. 前往 Gitlab Mirroring repositories
+<img
+  src={require('./gitlab_mirroring_repo.png').default}
+  alt=""
+  style={{'max-width': '700px', 'margin-left': '24px'}} 
+/>
+
+### 4. 進行設定 - Gitlab
+- 複製 Github Repo SSH 網址到下方的 Code Block  
+- 將結果複製到 Gitlab 上
+- 設定認證方式為 SSH Public Key
+- 點擊 Mirror repository
+
+<img
+  src={require('./gitlab_mirror_step.png').default}
+  alt="Gitlab fill mirror config"
+  style={{'max-width': '700px', 'margin-left': '24px', 'margin-bottom': '8px'}} 
+/>
+
+```jsx live
+function ConvertToGitlab(props) {
+  const [value, setValue] = useState('git@github.com:k1dave6412/gitpod-docusaurus.git');
+  const [outputValue, setOutputValue] = useState('ssh://git@github.com/k1dave6412/gitpod-docusaurus.git	');
+  const handleChange = (e) => {
+    setValue(e.target.value);
+
+    let out = e.target.value.replace('git@github.com:', 'git@github.com/')
+    setOutputValue('ssh://' + out)
+  }
+
+  return (
+    <div>
+      請輸入 GitHub SSH 網址
+      <br/>
+      <input type="text" value={value} onChange={handleChange} size="50"/>
+      <br/>
+      結果
+      <br/>
+      <p>{outputValue}</p>
+    </div>
+  );
+}
+```
+
+### 5. 進行設定 - Github
+- 從 Gitlab 複製 SSH Public Key 
+<img
+  src={require('./gitlab_mirror_copy_key.png').default}
+  alt="copy key from gitlab"
+  style={{'max-width': '700px', 'margin-left': '24px'}} 
+/>
+
+- 貼上到 Github 的 Deploy Key (Allow Write)
+<img
+  src={require('./github_add_key.png').default}
+  alt="add key on github"
+  style={{'max-width': '700px', 'margin-left': '24px'}} 
+/>
+
+### 6. 靜待 1 分鐘後，再從 Gitlab 進行 Sync
+在 Last successfully update 出現時間就成功了！
+
+<img
+  src={require('./gitlab_sync.png').default}
+  alt="start mirror"
+  style={{'max-width': '700px', 'margin-left': '24px'}} 
+/>
+
+開始同步
+
+<img
+  src={require('./gitlab_sync_succ.png').default}
+  alt="mirror successfully"
+  style={{'max-width': '700px', 'margin-left': '24px'}} 
+/>
+
+成功
+
+<br/>
+
+:::tip
+太快 Sync 容易 Fail... (屢試不爽)
+:::

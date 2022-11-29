@@ -27,6 +27,8 @@ const config = {
     locales: ['zh-Hant'],
   },
 
+  themes: ['@docusaurus/theme-live-codeblock'],
+
   presets: [
     [
       'classic',
@@ -100,6 +102,10 @@ const config = {
               {
                 label: 'Work At APMIC',
                 href: 'http://www.ap-mic.com/',
+              },
+              {
+                label: 'APMIC Discord',
+                href: 'https://discord.gg/An6nENWA',
               },
               {
                 label: 'Linkedin',

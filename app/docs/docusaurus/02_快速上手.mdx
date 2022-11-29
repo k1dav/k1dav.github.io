@@ -1,0 +1,68 @@
+---
+sidebar_position: 2
+title: 快速上手 (5min)
+---
+
+## 這邊以 GitPod 來進行開發
+
+### 1. 建立一個 Github repo
+<img
+  src={require('./create_repo.png').default}
+  alt="create github repo"
+  style={{'max-width': '600px', 'margin-left': '24px'}} 
+/>
+
+### 2. 建立 .gitpod.yml
+```yaml
+image: gitpod/workspace-node-lts
+
+ports:
+  - name: page
+    port: 3000
+    onOpen: ignore
+
+vscode:
+  extensions:
+    - yzhang.markdown-all-in-one
+```
+
+:::tip
+以上能從我的 [github: gitpod-docusaurus](https://github.com/k1dave6412/gitpod-docusaurus/tree/main) Clone 一份
+:::
+
+### 3. 安裝 [Gitpod Browser Extension](https://www.gitpod.io/docs/configure/user-settings/browser-extension)
+安裝完成就會有 Gitpod 的按鈕能夠點擊
+<img
+  src={require('./installed_gitpod.png').default}
+  alt="you can click gitpod after install the extension"
+  style={{'max-width': '700px', 'margin-left': '24px'}} 
+/>
+
+### 4. 初始化 Docusaurus 專案
+* 你可以將 `my-website` 換成你想要的名稱
+* 如果你習慣用 Typescript 可以加上 `--typescript`
+
+```bash
+npx create-docusaurus@latest my-website classic
+```
+
+<img
+  src={require('./install_docusaurus.png').default}
+  alt="install docusaurus via cli"
+  style={{'max-width': '700px', 'margin-left': '24px'}} 
+/>
+
+### 5. Run Dev Server
+可以簡單透過 VSCode 的指令列完成
+
+Ctrl + 點擊下方網址就能看到預設的頁面了
+
+<img
+  src={require('./run_task.gif').default}
+  alt="Run Task via VScode"
+  style={{'max-width': '700px', 'margin-left': '24px'}} 
+/>
+
+:::tip
+透過 CTRL (CMD) + Shift + P 開啟指令列
+:::
