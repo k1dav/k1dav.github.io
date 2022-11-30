@@ -52,3 +52,13 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
+      
+      - name: Run DocSearch Scraper
+        env:
+          APPLICATION_ID: ${{ secrets.ALGOLIA_ID }}
+          API_KEY: ${{ secrets.ALGOLIA_KEY }}
+        run: |
+          docker run \
+          -e APPLICATION_ID -e API_KEY \
+          -e CONFIG="$(cat .github/scrapeConfig/docusaurus-v2.json)" \
+          algolia/docsearch-scraper

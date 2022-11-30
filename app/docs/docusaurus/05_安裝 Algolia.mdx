@@ -35,7 +35,6 @@ title: 安裝 Algolia
 />
 
 ## 3. 設定 docusaurus.config.js
-
 - 從 API Key 頁面貼上對應的資料
 
 ```js
@@ -53,11 +52,84 @@ module.exports = {
   },
 };
 ```
+
+## 4. 在 Github Action 加上 Algolia Crawler
+觸發爬蟲才能夠在頁面上進行搜尋
+
+### 4-1. 將 Admin Key & App Id 加至 Github Action Secrets
+我是設定 ALGOLIA_KEY & ALGOLIA_ID
+
+- ALGOLIA_KEY 放 Admin Key
+- ALGOLIA_ID 放 Application Id
+
+<img
+  src={require('./github_action_add_secret.png').default}
+  alt=""
+  style={{'max-width': '700px', 'margin-left': '24px'}} 
+/>
+
+### 4-2. 加上設定檔
+修改 highlight 地方
+```json {2,3,4} title='.github/algolia/docusaurus-v2.json'
+{
+  "index_name": "k1dave6412.github.io",
+  "start_urls": ["https://k1dave6412.github.io/"],
+  "sitemap_urls": ["https://k1dave6412.github.io/sitemap.xml"],
+  "sitemap_alternate_links": true,
+  "stop_urls": [],
+  "selectors": {
+    "lvl0": {
+      "selector": "(//ul[contains(@class,'menu__list')]//a[contains(@class, 'menu__link menu__link--sublist menu__link--active')]/text() | //nav[contains(@class, 'navbar')]//a[contains(@class, 'navbar__link--active')]/text())[last()]",
+      "type": "xpath",
+      "global": true,
+      "default_value": "Documentation"
+    },
+    "lvl1": "header h1",
+    "lvl2": "article h2",
+    "lvl3": "article h3",
+    "lvl4": "article h4",
+    "lvl5": "article h5, article td:first-child",
+    "lvl6": "article h6",
+    "text": "article p, article li, article td:last-child"
+  },
+  "strip_chars": " .,;:#",
+  "custom_settings": {
+    "separatorsToIndex": "_",
+    "attributesForFaceting": ["language", "version", "type", "docusaurus_tag"],
+    "attributesToRetrieve": ["hierarchy", "content", "anchor", "url", "url_without_anchor", "type"]
+  }
+}
+```
+
+### 4-3. 在 Github Action Workflow 加上 Action
+添加 highlight 的地方就可以了
+
+如果你是其他方案可以用 Algolia 的 Crawler  
+只有免費的方案要用 algolia/docsearch-scraper 的 docker image 進行爬蟲  
+```yml {6-14}
+# ...
+jobs:
+  deploy:
+    steps:
+      # ...
+      - name: Run DocSearch Scraper
+        env:
+          APPLICATION_ID: ${{ secrets.ALGOLIA_ID }}
+          API_KEY: ${{ secrets.ALGOLIA_KEY }}
+        run: |
+          docker run \
+          -e APPLICATION_ID -e API_KEY \
+          -e CONFIG="$(cat .github/scrapeConfig/docusaurus-v2.json)" \
+          algolia/docsearch-scraper
+
+```
+
 ## 常見問題
-### 出現 `Module not found: Error: Can't resolve '@theme/SearchPage' in '/workspace/docusaurus/app/.docusaurus'`
+### 出現 Module not found
+`Module not found: Error: Can't resolve '@theme/SearchPage' in '/workspace/docusaurus/app/.docusaurus`
 通常是修改 `docusaurus.config.js` 後沒有重啟，重啟後就正常
 
 ## 參考資料
-
+- [Ouch1978 - 透過 GitHub Action 自動執行 DocSearch 的爬蟲](https://ouch1978.github.io/docs/docusaurus/configuration/automatically-run-docsearch-scraper-from-github-action)
 - [Wei - 在 Docusaurus 中使用 Algolia 實作搜尋功能](https://weiyun0912.github.io/Wei-Docusaurus/docs/Docusaurus/Algolia/)
 - [Docusaurus - Search](https://docusaurus.io/docs/search)
