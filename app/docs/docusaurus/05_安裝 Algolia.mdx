@@ -1,0 +1,63 @@
+---
+sidebar_position: 5
+title: 安裝 Algolia
+---
+
+安裝 Algolia 讓 Docusaurus 有全文檢索的功能
+
+## 前置動作
+
+- 需要建立 sitemap.xml，可以透過安裝 [plugin-sitemap](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-sitemap)
+- 有 Algolia 帳號
+
+## 1. 建立 Algolia Index
+
+- 前往 Search 進行建立
+  <img
+    src={require("./algolia_step1.png").default}
+    alt=""
+    style={{ "max-width": "700px", "margin-left": "24px" }}
+  />
+
+## 2. 取得 API Key
+
+- 前往 API Keys 頁面
+
+<img
+  src={require("./algolia_step2.png").default}
+  alt=""
+  style={{ "max-width": "700px", "margin-left": "24px" }}
+/>
+<img
+  src={require("./algolia_step2_1.png").default}
+  alt=""
+  style={{ "max-width": "700px", "margin-left": "24px" }}
+/>
+
+## 3. 設定 docusaurus.config.js
+
+- 從 API Key 頁面貼上對應的資料
+
+```js
+module.exports = {
+  // ...
+  themeConfig: {
+    // ...
+    algolia: {
+      appId: "YOUR_APP_ID", // The application ID provided by Algolia
+      apiKey: "YOUR_SEARCH_API_KEY", // 填上 Search Only Key 即可
+      indexName: "YOUR_INDEX_NAME",
+      contextualSearch: true, // Optional: see doc section below
+      searchPagePath: "search", // Optional: path for search page that enabled by default (`false` to disable it)
+    },
+  },
+};
+```
+## 常見問題
+### 出現 `Module not found: Error: Can't resolve '@theme/SearchPage' in '/workspace/docusaurus/app/.docusaurus'`
+通常是修改 `docusaurus.config.js` 後沒有重啟，重啟後就正常
+
+## 參考資料
+
+- [Wei - 在 Docusaurus 中使用 Algolia 實作搜尋功能](https://weiyun0912.github.io/Wei-Docusaurus/docs/Docusaurus/Algolia/)
+- [Docusaurus - Search](https://docusaurus.io/docs/search)
