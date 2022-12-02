@@ -1,0 +1,8 @@
+{
+  "label": "OpenTalk",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "公司所提供的 AI 對話服務，這些會有串接的教學"
+  }
+}

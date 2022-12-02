@@ -70,7 +70,7 @@ module.exports = {
 
 ### 4-2. 加上設定檔
 修改 highlight 地方
-```json {2,3,4} title='.github/algolia/docusaurus-v2.json'
+```json {2-4} title='.github/algolia/docusaurus-v2.json'
 {
   "index_name": "k1dave6412.github.io",
   "start_urls": ["https://k1dave6412.github.io/"],
@@ -106,12 +106,15 @@ module.exports = {
 
 如果你是其他方案可以用 Algolia 的 Crawler  
 只有免費的方案要用 algolia/docsearch-scraper 的 docker image 進行爬蟲  
-```yml {6-14}
+```yml {6-17}
 # ...
 jobs:
   deploy:
     steps:
       # ...
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: Run DocSearch Scraper
         env:
           APPLICATION_ID: ${{ secrets.ALGOLIA_ID }}
@@ -124,10 +127,22 @@ jobs:
 
 ```
 
+::tip
+- name: Checkout
+  uses: actions/checkout@v3
+
+這部份是因為我在 deploy 的階段是用 artifact 所以沒有 repo 資料  
+要先 checkout 才能讀到 repo 資料
+::
+
 ## 常見問題
 ### 出現 Module not found
 `Module not found: Error: Can't resolve '@theme/SearchPage' in '/workspace/docusaurus/app/.docusaurus`
-通常是修改 `docusaurus.config.js` 後沒有重啟，重啟後就正常
+#### 原因
+通常是修改 `docusaurus.config.js` 後沒有重啟
+
+#### 解法
+重啟
 
 ## 參考資料
 - [Ouch1978 - 透過 GitHub Action 自動執行 DocSearch 的爬蟲](https://ouch1978.github.io/docs/docusaurus/configuration/automatically-run-docsearch-scraper-from-github-action)

@@ -52,7 +52,10 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
-      
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: Run DocSearch Scraper
         env:
           APPLICATION_ID: ${{ secrets.ALGOLIA_ID }}

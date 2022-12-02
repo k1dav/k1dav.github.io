@@ -22,6 +22,8 @@ date: 2022-11-29T11:00
 
 - [Github Action](https://github.com/features/actions)
 
+- [Github Action Cache](https://docs.github.com/en/actions/using-workflows/caching-dependencies-to-speed-up-workflows)
+
 - [Dev Container](https://code.visualstudio.com/docs/devcontainers/containers)
 
 - [Netlify](https://www.netlify.com/)
@@ -32,6 +34,7 @@ date: 2022-11-29T11:00
 ### 程式語言
 - [TypeScript](https://www.typescriptlang.org/)
 - [LeetCode](https://leetcode.com/)
+- [GraphQL](https://graphql.org//)
 
 ### 編輯器
 - [VS Code](https://code.visualstudio.com/)

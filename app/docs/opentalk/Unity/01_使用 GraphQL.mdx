@@ -1,0 +1,183 @@
+---
+sidebar_position: 1
+title: 如何在 Unity 使用 GraphQL
+---
+
+## 教你如何 Untiy 使用 GraphQL
+有現成的套件，用起來比傳統的 Request 舒服多了 =P
+
+## 1. 下載 GraphQL Unity Package
+[Github - gazuntype/graphQL-client-unity](https://github.com/gazuntype/graphQL-client-unity/tree/master/UnityPackages)
+
+## 2. 將 Package Import 到 Unity 
+放在 Assets，並且不用匯入 Demo
+<img
+  src={require('./unity_import_gql.png').default}
+  alt="Import unity gql package"
+  style={{'max-width': '700px', 'margin-left': '24px'}} 
+/>
+
+## 3. 加上 Header 使其能夠與 OpenTalk 串接
+```c {14-17} title="Assets\graphQl-client\Scripts\Core\HttpHandler.cs"
+namespace GraphQlClient.Core
+{
+    public class HttpHandler
+    {
+        public static async Task<UnityWebRequest> PostAsync(string url, string details, string authToken = null)
+        {
+            string jsonData = JsonConvert.SerializeObject(new { query = details });
+            byte[] postData = Encoding.ASCII.GetBytes(jsonData);
+
+            UnityWebRequest request = UnityWebRequest.Post(url, UnityWebRequest.kHttpVerbPOST);
+            request.uploadHandler = new UploadHandlerRaw(postData);
+            request.SetRequestHeader("Content-Type", "application/json");
+
+            // opentalk
+            request.SetRequestHeader("token", "<your_token>");
+            request.SetRequestHeader("uuid", "<your_uuid>");
+            request.SetRequestHeader("account", "<your_account>");
+
+            if (!String.IsNullOrEmpty(authToken))
+                request.SetRequestHeader("Authorization", "Bearer " + authToken);
+// ...
+```
+
+## 4. 將 Encoding 改為 UTF-8  
+原先的 ASCII 會讓中文無法傳送，要改為 UTF-8  
+總共有五處  
+
+```c {8} title="Assets\graphQl-client\Scripts\Core\HttpHandler.cs"
+namespace GraphQlClient.Core
+{
+    public class HttpHandler
+    {
+        public static async Task<UnityWebRequest> PostAsync(string url, string details, string authToken = null)
+        {
+            string jsonData = JsonConvert.SerializeObject(new { query = details });
+            byte[] postData = Encoding.UTF8.GetBytes(jsonData);
+
+            UnityWebRequest request = UnityWebRequest.Post(url, UnityWebRequest.kHttpVerbPOST);
+            request.uploadHandler = new UploadHandlerRaw(postData);
+            request.SetRequestHeader("Content-Type", "application/json");
+
+            // opentalk
+            request.SetRequestHeader("token", "<your_token>");
+            request.SetRequestHeader("uuid", "<your_uuid>");
+            request.SetRequestHeader("account", "<your_account>");
+
+            if (!String.IsNullOrEmpty(authToken))
+                request.SetRequestHeader("Authorization", "Bearer " + authToken);
+// ...
+```
+
+## 5. 建立 Scriptable Object
+- Create > GraphQlClient > API Reference
+- Url 為 `https://hasura-cloud.ap-mic.com/v1/graphql`
+
+<img
+  src={require('./unity_add_ref.gif').default}
+  alt=""
+  style={{'max-width': '700px'}} 
+/>
+
+## 常見問題
+### 如何取得 OpenTalk Token & Account?
+1. 前往開發者頁面
+2. 從右上角複製
+
+<img
+  src={require('./opentalk_token.png').default}
+  alt="get opentalk token"
+  style={{'max-width': '700px', 'margin-left': '24px'}} 
+/>
+
+### OpenTalk UUID 的用途?
+用於識別每一個用戶 (裝置)  
+你可以透過一些方式產生  
+例如每個手機安裝後，都有一組 uuid 做為識別  
+那就知道使用的狀態
+
+### CS1061: 'UnityWebRequestAsyncOperation'
+Assets\graphQl-client\Scripts\Core\HttpHandler.cs(31,17): error CS1061: 'UnityWebRequestAsyncOperation' does not contain a definition for 'GetAwaiter' and no accessible extension method 'GetAwaiter' accepting a first argument of type 'UnityWebRequestAsyncOperation' could be found (are you missing a using directive or an assembly reference?)
+
+#### 原因
+因為一般而言 UnityWebRequestAsyncOperation 不會含有 GetAwaiter 
+
+#### 解法 
+所以我們要加上
+```c {13-25} title="Assets\graphQl-client\Scripts\Core\HttpHandler.cs"
+// ...
+        #region Utility
+
+        public static string FormatJson(string json)
+        {
+            var parsedJson = JsonConvert.DeserializeObject(json);
+            return JsonConvert.SerializeObject(parsedJson, Formatting.Indented);
+        }
+
+        #endregion
+    }
+
+    public static class UnityWebRequestExtension
+    {
+        public static TaskAwaiter<UnityWebRequest.Result> GetAwaiter(this UnityWebRequestAsyncOperation reqOp)
+        {
+            TaskCompletionSource<UnityWebRequest.Result> tsc = new();
+            reqOp.completed += asyncOp => tsc.TrySetResult(reqOp.webRequest.result);
+
+            if (reqOp.isDone)
+                tsc.TrySetResult(reqOp.webRequest.result);
+
+            return tsc.Task.GetAwaiter();
+        }
+    }
+}
+```
+
+### CS0246: The type or namespace name `TaskAwaiter<>`  
+Assets\graphQl-client\Scripts\Core\HttpHandler.cs(229,23): error CS0246: The type or namespace name `TaskAwaiter<>` could not be found (are you missing a using directive or an assembly reference?)
+
+#### 原因
+少了對應的 Import
+
+#### 解法
+加上 import 
+```c title="Assets\graphQl-client\Scripts\Core\HttpHandler.cs"
+using System.Runtime.CompilerServices;
+```
+
+### 送出的字串為網址，觸發 ArgumentNullException
+#### 原因
+下方解法 Highlight 處，沒有判斷單獨 : 的狀態  
+只有判斷 `":` 所發生的 Bug
+
+#### 解法
+加上判斷
+```c {16} title="Assets\graphQl-client\Scripts\Core\GraphApi.cs"
+private static string JsonToArgument(string jsonInput)
+{
+    char[] jsonChar = jsonInput.ToCharArray();
+    List<int> indexes = new List<int>();
+    jsonChar[0] = ' ';
+    jsonChar[jsonChar.Length - 1] = ' ';
+    for (int i = 0; i < jsonChar.Length; i++)
+    {
+        if (jsonChar[i] == '\"')
+        {
+            if (indexes.Count == 2)
+                indexes = new List<int>();
+            indexes.Add(i);
+        }
+
+        if (jsonChar[i] == ':' && indexes.Count == 2)
+        {
+            jsonChar[indexes[0]] = ' ';
+            jsonChar[indexes[1]] = ' ';
+        }
+    }
+
+    string result = new string(jsonChar);
+    return result;
+}
+```
+
