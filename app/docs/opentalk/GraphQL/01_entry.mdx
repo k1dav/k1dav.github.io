@@ -1,0 +1,111 @@
+---
+sidebar_position: 1
+title: 智能引擎對話
+---
+
+## 教導如何訓練機器人，並透過 GraphQL 進行請求
+
+## 1. 前往聊天機器人 - 腳本設定
+<img
+  src={require('./ot_training.png').default}
+  alt=""
+  style={{'max-width': '700px', 'margin-left': '24px'}} 
+/>
+
+## 2. 建立基本的對話
+<img
+  src={require('./ot_training_teach.png').default}
+  alt=""
+  style={{'max-width': '700px', 'margin-left': '24px'}} 
+/>
+
+## 3. 測試看看吧
+
+```jsx live
+function Entry(props) {
+  const [account, setAccount] = useState('');
+  const [token, setToken] = useState('');
+  const [text, setText] = useState('');
+  const [output, setOutput] = useState('');
+  
+
+  const entryMutation = {
+      query: `mutation entry($text: String!) {
+            Entry(text: $text) {
+              message
+              result
+              skill_name
+          }
+      }`
+  };
+
+  function sendReq() {
+    const xhr = new XMLHttpRequest();
+    xhr.responseType = 'json';
+    xhr.open('POST', 'https://hasura-cloud.ap-mic.com/v1/graphql');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('account', account);
+    xhr.setRequestHeader('token', token);
+    xhr.setRequestHeader('uid', 'test');
+    xhr.onload = function () {
+        setOutput(JSON.stringify(xhr.response));
+    };
+
+    entryMutation.variables = {
+      text
+    }
+    xhr.send(JSON.stringify(entryMutation));
+  }
+
+  return (
+    <ul class="form-style-1">
+      <li>
+        <label>
+          帳號 <span class="required">*</span>
+        </label>
+        <input
+          class="field-long"
+          type="text"
+          value={account}
+          onChange={(e) => {
+            setAccount(e.target.value);
+          }}
+        />
+      </li>
+      <li>
+        <label>
+          Token <span class="required">*</span>
+        </label>
+        <input
+          class="field-long"
+          type="text"
+          value={token}
+          onChange={(e) => {
+            setToken(e.target.value);
+          }}
+        />
+      </li>
+      <li>
+        <label>
+          問題 <span class="required">*</span>
+        </label>
+        <input
+          class="field-long"
+          type="text"
+          value={text}
+          onChange={(e) => {
+            setText(e.target.value);
+          }}
+        />
+      </li>
+      <li>
+        <input type="button" value="測試" onClick={sendReq}/>
+      </li>
+      <li>
+        <label>Response</label>
+        <div class="field-long field-textarea">{output}</div>
+      </li>
+    </ul>
+  );
+}
+```

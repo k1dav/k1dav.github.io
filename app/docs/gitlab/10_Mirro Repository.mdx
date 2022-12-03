@@ -46,23 +46,27 @@ title: Mirror Repository
 function ConvertToGitlab(props) {
   const [value, setValue] = useState('git@github.com:k1dave6412/gitpod-docusaurus.git');
   const [outputValue, setOutputValue] = useState('ssh://git@github.com/k1dave6412/gitpod-docusaurus.git	');
-  const handleChange = (e) => {
-    setValue(e.target.value);
 
-    let out = e.target.value.replace('git@github.com:', 'git@github.com/')
+  const onChangeHandler = event => {
+    setValue(event.target.value);
+    
+    let out = event.target.value.replace('git@github.com:', 'git@github.com/')
     setOutputValue('ssh://' + out)
-  }
+  };
 
   return (
-    <div>
-      請輸入 GitHub SSH 網址
-      <br/>
-      <input type="text" value={value} onChange={handleChange} size="50"/>
-      <br/>
-      結果
-      <br/>
-      <p>{outputValue}</p>
-    </div>
+      <ul class="form-style-1">
+        <li>
+          <label>GitHub SSH 網址<span class="required">*</span></label>
+          <input type="text" class="field-long" value={value} onChange={onChangeHandler} />
+        </li>
+        <li>
+            <label>Response</label>
+            <div
+              class="field-long field-textarea"
+            >{outputValue}</div>
+          </li>
+      </ul>
   );
 }
 ```
