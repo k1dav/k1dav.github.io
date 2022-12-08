@@ -135,7 +135,7 @@ const config = {
       algolia: {
         appId: "UJHZFVFSAP", // The application ID provided by Algolia
         apiKey: "08c82872983a8150c0783fbf5ac59e99", // Public API key: it is safe to commit it
-        indexName: "github.io",
+        indexName: "k1dave6412.github.io",
         contextualSearch: true, // Optional: see doc section below
         searchPagePath: "search", // Optional: path for search page that enabled by default (`false` to disable it)
       },
