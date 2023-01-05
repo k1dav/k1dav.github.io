@@ -1,0 +1,98 @@
+---
+sidebar_position: 3
+title: 偵測平面後出現角色
+---
+
+## 接續初始環境
+用一個簡單的例子
+讓大家先了解 AR 具體會做什麼事情
+
+### 1. 匯入角色
+以 Unity Asset Store 的角色為例
+
+1. 到 [Unity Asset Store](https://assetstore.unity.com/3d/characters) 下載至帳號
+2. 從 Package Manager import
+<img
+  src={require('./import_prefeb_from_store.png').default}
+  alt=""
+  style={{'max-width': '700px', 'margin-left': '24px'}} 
+/>
+
+### 2. 於 AR Session Origin 加入 Components (右側面版)
+這邊以平面偵測為例
+<img
+  src={require('./add_ar_plane_manager.png').default}
+  alt="Add AR Plane Manager"
+  style={{'max-width': '700px', 'margin-left': '24px'}} 
+/>
+
+#### 追蹤的方法
+- AR Plane Manager  
+	- [AR Plane Manager(平面追踪对象管理器)-阿里云开发者社区 (aliyun.com)](https://developer.aliyun.com/article/999698)  
+	- [Plane Detection with ARCore and Unity - DEV Community 👩‍💻👨‍💻](https://dev.to/whatminjacodes/plane-detection-with-arcore-and-unity-3245)  
+- AR Point Cloud  
+- AR Point Cloud Manager  
+- AR Raycast Manager  
+- AR Anchor Manager  
+
+### 3. 於 Scene 進行以下元件的 Prefeb  
+於左上角建立，再拖拉到 Prefeb 資料夾
+
+- AR Default Point Cloud  
+- AR Default Plane  
+
+<img
+  src={require('./add_ar_prefeb.png').default}
+  alt="Add AR Prefebs"
+  style={{'max-width': '700px', 'margin-left': '24px'}} 
+/>
+
+### 4. 加入要出現角色的 Prefeb
+<img
+  src={require('./add_character_prefeb.png').default}
+  alt="Add Prefeb of Character"
+  style={{'max-width': '700px', 'margin-left': '24px'}} 
+/>
+
+### 5. 於 AR Session Origin 新增 Script ([Place on Plan](https://github.com/allinreality/PlaneTracking-ARFoundationUnity3D/blob/main/RequiredAssets/PlaceOnPlane.cs))  
+- [[SerializeField]](../SerializeField)
+- [[Out modifier]](../OutModifier)
+
+- 在 Placed Prefeb 加上剛剛的物件和 Indicator  
+<img
+  src={require('./place_on_plane_script.png').default}
+  alt="Place on plance settings"
+  style={{'max-width': '700px', 'margin-left': '24px'}} 
+/>
+
+## 常見問題
+### Plane 偵測的很奇怪
+<img
+  src={require('./weird_plane.JPG').default}
+  alt="Weird Plane"
+  style={{'max-width': '200px', 'margin-left': '24px'}} 
+/>
+
+原本就是這麼奇怪了…  
+- Plane 可以更 smooth  
+- 物件變小也會有幫助  
+
+### 點擊出現的物件總是背對
+旋轉 180°
+```c {3} title="PlaceOnPlane.cs"
+if (spawnedObject == null){
+  spawnedObject = Instantitate(mPlacedPrefeb, hitPose.position, hitPose.rotation);
+  spawnedObject.transform.Rotate(0f, 180f, 0f);
+}
+else 
+  spawnedObject.transform.position = hitPose.position;
+placementUpdate.Invoke();
+````
+
+## 完成
+附上程式碼
+
+## 參考資料
+- [AR的檢測和追蹤 – Kencoder 開發日誌 (wordpress.com)](https://kendevlog.wordpress.com/2019/12/23/ar-tracking/)  
+- [(10) Getting Started With AR Foundation in Unity 2022 - AR Foundation 101 for Beginners (ARCore, ARKit) - YouTube](https://www.youtube.com/watch?v=lelX8GGh_S8)  
+- [allinreality/PlaneTracking-ARFoundationUnity3D: PlaneTracking-ARFoundationUnity3D (github.com)](https://github.com/allinreality/PlaneTracking-ARFoundationUnity3D)  

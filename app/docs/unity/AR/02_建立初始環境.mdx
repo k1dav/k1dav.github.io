@@ -1,0 +1,79 @@
+---
+sidebar_position: 2
+title: 建立初始環境
+---
+
+## 新專案
+配置一個專案的設定，進行 AR 開發
+
+### 1. 建立一個 3D Project
+在這個 Tutorial 中學會製作電子菜單，並與 OpenTalk 串接
+
+<img
+  src={require('./create_3d.png').default}
+  alt="Create 3D Project"
+  style={{'max-width': '700px', 'margin-left': '24px'}} 
+/>
+
+### 2. 啟用相關的 AR Package
+在 Package Manager 啟動
+<img
+  src={require('./install_ar_feature.png').default}
+  alt="Install AR Feature"
+  style={{'max-width': '700px', 'margin-left': '24px'}} 
+/>
+
+### 3. 建立常用 Folder
+#### Prefebs
+- 用於儲存預先組好的 Game Object (類似 Template)  
+- [Unity學習筆記#6 : Prefab 使用須知 – Kencoder 開發日誌 (wordpress.com)](https://kendevlog.wordpress.com/2017/09/24/unity%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%986-prefab-%E4%BD%BF%E7%94%A8%E9%A0%88%E7%9F%A5/)  
+
+#### Scripts
+放置 C++ 程式碼的地方
+
+#### 4. 於 Scene 建立基本 AR 元件
+- AR Session Origin  
+	- 裡面會有 AR Camera 所以要將原本的 Main Camera 刪除  
+- AR Session  
+
+<img
+  src={require('./ar_structure.png').default}
+  alt="AR 目錄結構"
+  style={{'max-width': '700px', 'margin-left': '24px'}} 
+/>
+
+## 完成
+以下附有關 Debug Player 的設定  
+接下來會以最簡單的了解 AR 再進到電子菜單開發  
+
+## Debug Player 設定
+
+### Android Player
+#### 移除 Vulkan
+<img
+  src={require('./remove_vulkan.png').default}
+  alt="Remove Vulkan"
+  style={{'max-width': '700px', 'margin-left': '24px'}} 
+/>
+
+#### Add ARCore
+<img
+  src={require('./add_ar_core_in_android.png').default}
+  alt="Add ARCore on Android"
+  style={{'max-width': '700px', 'margin-left': '24px'}} 
+/>
+
+#### Min Android Version 設為 v7
+由於 ARCore 在 Android 7 後才有
+<img
+  src={require('./set_min_android_version.png').default}
+  alt="Set Android Min Version"
+  style={{'max-width': '700px', 'margin-left': '24px'}} 
+/>
+
+#### IL2CPP & check ARM64
+<img
+  src={require('./il2cpp.png').default}
+  alt="Android IL2CPP & ARM64"
+  style={{'max-width': '700px', 'margin-left': '24px'}} 
+/>
