@@ -1,0 +1,31 @@
+---
+sidebar_position: 4
+title: 匯入 Live2D 角色
+---
+
+## 什麼是 [Live2D](https://www.live2d.jp)?
+Live2D 是一種能做出偽 3D 的軟體，Live2D 生成的人物通常是日系動畫造型。
+Live2D 由日本程式編寫人員中城哲也發明。不少遊戲、電子小說、虛擬 YouTuber 的製作過程中有用到 Live2D。
+
+## 流程
+使用 Windows 可以很大程度排除問題
+
+### 1. 匯入 [SDK](https://www.live2d.com/en/download/cubism-sdk/)  
+- Assets -> Import Package -> Import Custom Package  
+### 2. 匯入 [Live2D 模型](https://www.live2d.com/zh-CHS/download/sample-data/)  
+- 建一個資料夾後直接丟入  
+
+## 常見問題
+### 重啟後還是抓不到 Live2D SDK
+<img
+  src={require('./import_live_2d.png').default}
+  alt=""
+  style={{'max-width': '700px', 'margin-left': '24px'}} 
+/>
+
+#### 原因
+少了對應的 Import
+
+#### 解法
+[Import SDK | Live2D Manuals & Tutorials](https://docs.live2d.com/en/cubism-sdk-tutorials/getting-started/) 進行排除
+
