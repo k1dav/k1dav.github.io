@@ -7,7 +7,7 @@
       "command": "npm",
       "args": ["start"],
       "options": {
-        "cwd": "${workspaceFolder}/app/"
+        "cwd": "${workspaceFolder}"
       },
       "group": {
         "kind": "develope",
@@ -20,7 +20,7 @@
       "command": "npm",
       "args": ["run", "build"],
       "options": {
-        "cwd": "${workspaceFolder}/app/"
+        "cwd": "${workspaceFolder}"
       },
       "group": {
         "kind": "build",

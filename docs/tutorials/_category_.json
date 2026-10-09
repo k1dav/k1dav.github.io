@@ -1,0 +1,9 @@
+{
+  "label": "教學系列",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "slug": "/tutorials",
+    "description": "Docusaurus、GitLab、OpenTalk、Unity 等主題的系列教學。"
+  }
+}

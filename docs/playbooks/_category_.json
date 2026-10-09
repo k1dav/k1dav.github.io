@@ -1,0 +1,9 @@
+{
+  "label": "Playbooks",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "slug": "/playbooks",
+    "description": "DevOps 與基礎設施的實作手冊：自架服務、網路、SSO、K8s。"
+  }
+}
