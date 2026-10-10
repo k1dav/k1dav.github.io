@@ -1,6 +1,6 @@
-# k1dav.fun
+# k1dav.github.io
 
-S.Feng 技術手扎，使用 [Docusaurus 3](https://docusaurus.io/) 建置，透過 GitHub Actions 部署到 GitHub Pages，網域為 <https://k1dav.fun>。
+S.Feng 技術手扎，使用 [Docusaurus 3](https://docusaurus.io/) 建置，透過 GitHub Actions 部署到 GitHub Pages，網址為 <https://k1dav.github.io>。
 
 ## 開發
 
@@ -37,5 +37,3 @@ node scripts/import-obsidian.mjs ~/data/obsidian
 ## 部署
 
 push 到 `main` 後由 `.github/workflows/gh-pages.yml` 自動 build 並部署；PR 只會跑 build 檢查。
-
-自訂網域由 `static/CNAME`（`k1dav.fun`）設定。

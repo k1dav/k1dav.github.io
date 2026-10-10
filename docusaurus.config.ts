@@ -11,7 +11,7 @@ const config: Config = {
     v4: true,
   },
 
-  url: 'https://k1dav.fun',
+  url: 'https://k1dav.github.io',
   baseUrl: '/',
 
   organizationName: 'k1dav',
@@ -121,7 +121,7 @@ const config: Config = {
           items: [
             {label: '文章', to: '/blog'},
             {label: '標籤', to: '/blog/tags'},
-            {label: 'RSS', href: 'https://k1dav.fun/blog/rss.xml'},
+            {label: 'RSS', href: 'https://k1dav.github.io/blog/rss.xml'},
           ],
         },
         {
