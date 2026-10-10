@@ -98,6 +98,7 @@ const config: Config = {
         {to: '/docs/playbooks', label: 'Playbooks', position: 'left'},
         {to: '/docs/notes', label: '技術名詞', position: 'left'},
         {to: '/blog', label: 'Blog', position: 'left'},
+        {to: '/projects', label: 'Projects', position: 'left'},
         {
           href: 'https://github.com/k1dav',
           label: 'GitHub',
@@ -114,6 +115,7 @@ const config: Config = {
             {label: 'Wiki', to: '/docs/intro'},
             {label: 'Playbooks', to: '/docs/playbooks'},
             {label: '技術名詞', to: '/docs/notes'},
+            {label: 'Projects', to: '/projects'},
           ],
         },
         {
