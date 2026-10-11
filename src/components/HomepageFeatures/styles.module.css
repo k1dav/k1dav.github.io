@@ -23,7 +23,14 @@
   border-color: var(--ifm-color-primary);
 }
 
-.emoji {
-  font-size: 3rem;
-  margin-bottom: 0.5rem;
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 0.75rem;
+  border-radius: 18px;
+  color: var(--ifm-color-primary);
+  background: var(--ifm-color-emphasis-100);
 }

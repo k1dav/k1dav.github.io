@@ -1,3 +1,5 @@
+import {Archive, Bot, Smartphone, Wrench, type LucideIcon} from 'lucide-react';
+
 export type Project = {
   name: string;
   description: string;
@@ -11,13 +13,15 @@ export type Project = {
 
 export type ProjectGroup = {
   title: string;
+  Icon: LucideIcon;
   description: string;
   projects: Project[];
 };
 
 export const projectGroups: ProjectGroup[] = [
   {
-    title: '📱 App',
+    title: 'App',
+    Icon: Smartphone,
     description: '已上架的 iOS App。',
     projects: [
       {
@@ -31,7 +35,8 @@ export const projectGroups: ProjectGroup[] = [
     ],
   },
   {
-    title: '🤖 AI 與 MCP',
+    title: 'AI 與 MCP',
+    Icon: Bot,
     description: '讓 AI 助手與 coding agent 能操作真實系統的工具。',
     projects: [
       {
@@ -70,7 +75,8 @@ export const projectGroups: ProjectGroup[] = [
     ],
   },
   {
-    title: '🛠 網頁小工具',
+    title: '網頁小工具',
+    Icon: Wrench,
     description: '解決日常小問題的工具，打開瀏覽器就能用，資料不離開本機。',
     projects: [
       {
@@ -110,7 +116,8 @@ export const projectGroups: ProjectGroup[] = [
     ],
   },
   {
-    title: '📦 過去的作品',
+    title: '過去的作品',
+    Icon: Archive,
     description: '已封存、不再維護，但程式碼仍可參考。',
     projects: [
       {

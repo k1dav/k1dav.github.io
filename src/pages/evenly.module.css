@@ -90,9 +90,21 @@
   border: 1px solid var(--ifm-color-emphasis-200);
 }
 
-.pillarEmoji {
-  font-size: 2.2rem;
-  margin-bottom: 0.5rem;
+.pillarIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 0.75rem;
+  border-radius: 16px;
+  color: #2b6ed4;
+  background: rgba(43, 110, 212, 0.1);
+}
+
+:global(.col):nth-child(2) .pillarIcon {
+  color: #c74a3d;
+  background: rgba(199, 74, 61, 0.1);
 }
 
 .showcase {
@@ -144,10 +156,20 @@
   color: var(--ifm-color-emphasis-700);
 }
 
-.featureEmoji {
+.featureIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 0.6rem;
+  border-radius: 12px;
+  color: #2b6ed4;
+  background: rgba(43, 110, 212, 0.1);
+}
+
+.feature strong {
   display: block;
-  font-size: 1.6rem;
-  margin-bottom: 0.4rem;
 }
 
 .privacy {
@@ -169,6 +191,9 @@
 }
 
 .badges span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   padding: 0.4rem 1rem;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.18);

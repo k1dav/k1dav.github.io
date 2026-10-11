@@ -3,6 +3,22 @@ import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
+import {
+  Accessibility,
+  Ban,
+  Cloud,
+  Compass,
+  EyeOff,
+  FlaskConical,
+  Hand,
+  Languages,
+  LayoutGrid,
+  PackageOpen,
+  Scale,
+  ShieldCheck,
+  Split,
+  UserX,
+} from 'lucide-react';
 
 import styles from './evenly.module.css';
 
@@ -12,17 +28,17 @@ const PRIVACY = 'https://k1dav-c.github.io/ping-ping-accounting/privacy.html';
 
 const pillars = [
   {
-    emoji: '⚖️',
+    Icon: Scale,
     title: '帳永遠是平的',
     text: '底層是複式簿記，每筆交易同時記「錢從哪來、往哪去」，兩邊恆等。餘額、卡費、淨資產不會越記越歪。',
   },
   {
-    emoji: '👆',
+    Icon: Hand,
     title: '拖一下就記完',
     text: '把帳戶拖到分類上就是一筆：現金拖到餐飲＝買午餐，銀行拖到信用卡＝繳卡費。會計藏在背後，你只管拖。',
   },
   {
-    emoji: '🔒',
+    Icon: ShieldCheck,
     title: '資料只屬於你',
     text: '無帳號、無追蹤、無廣告。私人帳本只存在你的裝置上，隱私標籤是「不收集任何資料」。',
   },
@@ -100,14 +116,14 @@ const showcases = [
 ];
 
 const moreFeatures = [
-  {emoji: '🧭', title: '先用範例試試', text: '載入一本範例帳隨便點、隨便改，看完一鍵清空再記自己的。'},
-  {emoji: '❓', title: '操作導覽', text: '一步步帶你看每個頁面，右上角「?」隨時重看。'},
-  {emoji: '📱', title: '小工具與控制中心', text: '主畫面、鎖定畫面、控制中心、動作按鈕都能直接記帳。'},
-  {emoji: '🧾', title: '拆分去向', text: '幫朋友墊付？一筆同時記「吃飯 300＋應收帳款 500」。'},
-  {emoji: '☁️', title: 'iCloud 備份', text: '一鍵或定時備份到 iCloud 雲碟，換機登入即可還原。'},
-  {emoji: '📦', title: 'Money Manager 搬家', text: '一鍵匯入 .mmbak：帳戶、分類、多年交易分毫不差。'},
-  {emoji: '🌏', title: '繁中 / English / 日本語', text: '三種介面語言，支援深色模式。'},
-  {emoji: '♿', title: '無障礙', text: '完整支援 VoiceOver、超大字級、減少動態效果。'},
+  {Icon: FlaskConical, title: '先用範例試試', text: '載入一本範例帳隨便點、隨便改，看完一鍵清空再記自己的。'},
+  {Icon: Compass, title: '操作導覽', text: '一步步帶你看每個頁面，右上角「?」隨時重看。'},
+  {Icon: LayoutGrid, title: '小工具與控制中心', text: '主畫面、鎖定畫面、控制中心、動作按鈕都能直接記帳。'},
+  {Icon: Split, title: '拆分去向', text: '幫朋友墊付？一筆同時記「吃飯 300＋應收帳款 500」。'},
+  {Icon: Cloud, title: 'iCloud 備份', text: '一鍵或定時備份到 iCloud 雲碟，換機登入即可還原。'},
+  {Icon: PackageOpen, title: 'Money Manager 搬家', text: '一鍵匯入 .mmbak：帳戶、分類、多年交易分毫不差。'},
+  {Icon: Languages, title: '繁中 / English / 日本語', text: '三種介面語言，支援深色模式。'},
+  {Icon: Accessibility, title: '無障礙', text: '完整支援 VoiceOver、超大字級、減少動態效果。'},
 ];
 
 function AppStoreButton({className}: {className?: string}) {
@@ -158,8 +174,8 @@ export default function Evenly(): ReactNode {
             {pillars.map((p) => (
               <div key={p.title} className="col col--4 margin-bottom--lg">
                 <div className={styles.pillar}>
-                  <div className={styles.pillarEmoji} aria-hidden>
-                    {p.emoji}
+                  <div className={styles.pillarIcon}>
+                    <p.Icon size={28} strokeWidth={1.75} aria-hidden />
                   </div>
                   <Heading as="h3">{p.title}</Heading>
                   <p>{p.text}</p>
@@ -197,8 +213,8 @@ export default function Evenly(): ReactNode {
             {moreFeatures.map((f) => (
               <div key={f.title} className="col col--3 margin-bottom--lg">
                 <div className={styles.feature}>
-                  <span className={styles.featureEmoji} aria-hidden>
-                    {f.emoji}
+                  <span className={styles.featureIcon}>
+                    <f.Icon size={22} strokeWidth={1.75} aria-hidden />
                   </span>
                   <strong>{f.title}</strong>
                   <p>{f.text}</p>
@@ -217,10 +233,18 @@ export default function Evenly(): ReactNode {
               只有你按「更新匯率」，或用自己的金鑰進行 AI 記帳時才會連網；金鑰只存在裝置的鑰匙圈裡。
             </p>
             <div className={styles.badges}>
-              <span>🚫 無帳號</span>
-              <span>🙈 無追蹤</span>
-              <span>📵 無廣告</span>
-              <span>🛡 不收集任何資料</span>
+              <span>
+                <UserX size={18} aria-hidden /> 無帳號
+              </span>
+              <span>
+                <EyeOff size={18} aria-hidden /> 無追蹤
+              </span>
+              <span>
+                <Ban size={18} aria-hidden /> 無廣告
+              </span>
+              <span>
+                <ShieldCheck size={18} aria-hidden /> 不收集任何資料
+              </span>
             </div>
           </div>
         </section>

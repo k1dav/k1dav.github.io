@@ -61,3 +61,13 @@
 .groupDescription {
   color: var(--ifm-color-emphasis-700);
 }
+
+.groupTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.groupTitle svg {
+  color: var(--ifm-color-primary);
+}

@@ -2,11 +2,12 @@ import type {ReactNode} from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import Heading from '@theme/Heading';
+import {BookOpen, Brain, Wrench, type LucideIcon} from 'lucide-react';
 import styles from './styles.module.css';
 
 type FeatureItem = {
   title: string;
-  emoji: string;
+  Icon: LucideIcon;
   to: string;
   description: ReactNode;
 };
@@ -14,7 +15,7 @@ type FeatureItem = {
 const FeatureList: FeatureItem[] = [
   {
     title: 'Playbooks',
-    emoji: '🛠️',
+    Icon: Wrench,
     to: '/docs/playbooks',
     description: (
       <>
@@ -25,7 +26,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: '技術名詞筆記',
-    emoji: '🧠',
+    Icon: Brain,
     to: '/docs/notes',
     description: (
       <>
@@ -36,7 +37,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: '教學系列',
-    emoji: '📚',
+    Icon: BookOpen,
     to: '/docs/tutorials',
     description: (
       <>
@@ -46,12 +47,12 @@ const FeatureList: FeatureItem[] = [
   },
 ];
 
-function Feature({title, emoji, to, description}: FeatureItem) {
+function Feature({title, Icon, to, description}: FeatureItem) {
   return (
     <div className={clsx('col col--4')}>
       <Link to={to} className={styles.card}>
-        <div className={styles.emoji} aria-hidden>
-          {emoji}
+        <div className={styles.icon}>
+          <Icon size={30} strokeWidth={1.75} aria-hidden />
         </div>
         <Heading as="h3">{title}</Heading>
         <p>{description}</p>

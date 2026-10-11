@@ -62,7 +62,10 @@ export default function Projects(): ReactNode {
         </p>
         {projectGroups.map((group) => (
           <section key={group.title} className="margin-top--xl">
-            <Heading as="h2">{group.title}</Heading>
+            <Heading as="h2" className={styles.groupTitle}>
+              <group.Icon size={26} strokeWidth={1.75} aria-hidden />
+              {group.title}
+            </Heading>
             <p className={styles.groupDescription}>{group.description}</p>
             <div className="row">
               {group.projects.map((project) => (
