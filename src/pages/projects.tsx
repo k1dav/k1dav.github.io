@@ -32,7 +32,7 @@ function ProjectCard({project}: {project: Project}) {
           )}
           {project.website && (
             <Link className="button button--sm button--secondary" href={project.website}>
-              官網
+              介紹
             </Link>
           )}
           {project.repo && (

@@ -1,0 +1,208 @@
+/* 品牌色：支出磚紅 #C74A3D、收入藍 #2B6ED4（取自 App 設計需求書） */
+.hero {
+  padding: 4rem 0 3rem;
+  background: linear-gradient(160deg, rgba(43, 110, 212, 0.08), rgba(199, 74, 61, 0.06));
+}
+
+.heroInner {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.heroText {
+  flex: 1;
+}
+
+.icon {
+  border-radius: 22px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.heroTitle {
+  margin: 1rem 0 0.25rem;
+  font-size: 2.6rem;
+}
+
+.heroTitleEn {
+  font-weight: 500;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.slogan {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(90deg, #c74a3d, #2b6ed4);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.heroLead {
+  font-size: 1.1rem;
+  color: var(--ifm-color-emphasis-800);
+}
+
+.heroActions {
+  margin: 1.5rem 0 0.75rem;
+}
+
+.storeButton {
+  color: #fff;
+  background: #111;
+  border: none;
+  border-radius: 12px;
+}
+
+.storeButton:hover {
+  color: #fff;
+  background: #333;
+}
+
+.meta {
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.heroPhone img,
+.showcasePhone img {
+  width: 100%;
+  height: auto;
+  border-radius: 32px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+}
+
+.heroPhone {
+  width: 300px;
+  flex-shrink: 0;
+}
+
+.section {
+  padding: 3.5rem var(--ifm-spacing-horizontal);
+}
+
+.pillar {
+  height: 100%;
+  padding: 1.5rem;
+  border-radius: 20px;
+  background: var(--ifm-background-surface-color);
+  border: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.pillarEmoji {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.showcase {
+  padding: 3.5rem 0;
+}
+
+.showcaseAlt {
+  background: var(--ifm-color-emphasis-100);
+}
+
+.showcaseInner {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+
+.reverse {
+  flex-direction: row-reverse;
+}
+
+.showcasePhone {
+  width: 280px;
+  flex-shrink: 0;
+}
+
+.showcaseText {
+  flex: 1;
+  font-size: 1.1rem;
+}
+
+.showcaseText li {
+  margin-bottom: 0.4rem;
+}
+
+.featureGrid {
+  margin-top: 1.5rem;
+}
+
+.feature {
+  height: 100%;
+  padding: 1.25rem;
+  border-radius: 16px;
+  border: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.feature p {
+  margin: 0.4rem 0 0;
+  font-size: 0.92rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.featureEmoji {
+  display: block;
+  font-size: 1.6rem;
+  margin-bottom: 0.4rem;
+}
+
+.privacy {
+  padding: 3.5rem 0;
+  color: #fff;
+  background: linear-gradient(135deg, #2b6ed4, #5856d6);
+}
+
+.privacy h2 {
+  color: #fff;
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.badges span {
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.cta {
+  padding: 4rem var(--ifm-spacing-horizontal);
+}
+
+.ctaIcon {
+  border-radius: 16px;
+  margin-bottom: 1rem;
+}
+
+.links {
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+}
+
+@media screen and (max-width: 996px) {
+  .heroInner,
+  .showcaseInner,
+  .reverse {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .heroPhone,
+  .showcasePhone {
+    width: 240px;
+  }
+
+  .showcaseText ul {
+    text-align: left;
+  }
+}

@@ -99,6 +99,7 @@ const config: Config = {
         {to: '/docs/notes', label: '技術名詞', position: 'left'},
         {to: '/blog', label: 'Blog', position: 'left'},
         {to: '/projects', label: 'Projects', position: 'left'},
+        {to: '/evenly', label: '平平記帳', position: 'left'},
         {
           href: 'https://github.com/k1dav',
           label: 'GitHub',
