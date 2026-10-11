@@ -242,3 +242,36 @@
   color: #2b6ed4;
   background: rgba(43, 110, 212, 0.1);
 }
+
+:global(#__docusaurus):has(.productPage) :global(.navbar) {
+  display: none;
+}
+
+.productNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.brand {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ifm-font-color-base);
+}
+
+.languageLinks {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.95rem;
+}
+
+.languageLinks a[aria-current='page'] {
+  color: var(--ifm-font-color-base);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}

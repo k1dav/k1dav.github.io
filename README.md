@@ -19,6 +19,9 @@ npm run build    # 輸出到 build/
 | `docs/notes/` | 技術名詞筆記（由 Obsidian 匯入） |
 | `docs/tutorials/` | 系列教學 |
 | `blog/` | 部落格文章 |
+| `src/components/Evenly/` | 平平記帳共用產品頁版型與中英文文案 |
+| `src/pages/evenly.tsx` | 中文產品頁 `/evenly` |
+| `src/pages/evenly/en.tsx` | 英文產品頁 `/evenly/en` |
 
 ## 從 Obsidian 同步筆記
 
