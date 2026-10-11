@@ -1,6 +1,6 @@
-# k1dav.github.io
+# k1dav
 
-S.Feng 技術手扎，使用 [Docusaurus 3](https://docusaurus.io/) 建置，透過 GitHub Actions 部署到 GitHub Pages，網址為 <https://www.k1dav.fun>。
+S.Feng 的技術筆記與部落格，使用 [Docusaurus 3](https://docusaurus.io/) 建置，透過 GitHub Actions 部署到 GitHub Pages，網址為 <https://www.k1dav.fun>。
 
 ## 開發
 

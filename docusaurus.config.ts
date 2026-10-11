@@ -3,8 +3,8 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'S.Feng 技術手扎',
-  tagline: 'DevOps・MLOps・LLM 的挖坑與填坑紀錄',
+  title: 'k1dav',
+  tagline: 'S.Feng 的 DevOps・MLOps・LLM 挖坑與填坑紀錄',
   favicon: 'img/favicon.ico',
 
   future: {
@@ -88,9 +88,9 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'S.Feng 技術手扎',
+      title: 'k1dav',
       logo: {
-        alt: 'S.Feng 技術手扎',
+        alt: 'k1dav',
         src: 'img/logo.png',
       },
       items: [

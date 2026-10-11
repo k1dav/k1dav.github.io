@@ -25,9 +25,21 @@ function ProjectCard({project}: {project: Project}) {
           ))}
         </div>
         <div className={styles.links}>
-          <Link className="button button--sm button--secondary" href={project.repo}>
-            GitHub
-          </Link>
+          {project.appStore && (
+            <Link className="button button--sm button--primary" href={project.appStore}>
+              App Store
+            </Link>
+          )}
+          {project.website && (
+            <Link className="button button--sm button--secondary" href={project.website}>
+              官網
+            </Link>
+          )}
+          {project.repo && (
+            <Link className="button button--sm button--secondary" href={project.repo}>
+              GitHub
+            </Link>
+          )}
           {project.demo && (
             <Link className="button button--sm button--primary" href={project.demo}>
               Demo
